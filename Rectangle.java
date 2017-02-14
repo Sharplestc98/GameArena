@@ -58,7 +58,6 @@ public class Rectangle
 	{
 		this.yPosition = y;
 	}
-
 	/**
 	 * Obtains the width of this Rectangle.
 	 * @return the width of this Rectangle,in pixels.
@@ -75,6 +74,17 @@ public class Rectangle
 	public double getHeight()
 	{
 		return height;
+	}
+	
+	public void setWidth(double x)
+	{
+		this.width = x;
+	}
+	
+	
+	public void setHeight(double y)
+	{
+		this.height = y;
 	}
 
 	/**
