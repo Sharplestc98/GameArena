@@ -49,6 +49,8 @@ public class GameArena
 	private boolean down = false;
 	private boolean left = false;
 	private boolean right = false;
+	private boolean r = false;
+	private boolean enter = false;
 
     // JavaFX containers
     private Scene scene;
@@ -105,6 +107,10 @@ public class GameArena
                     left = true;
                 if (keyEvent.getCode() == KeyCode.RIGHT) 
                     right = true;
+				if(keyEvent.getCode() == KeyCode.R)
+					r = true;
+				if(keyEvent.getCode() == KeyCode.ENTER)
+					enter = true;
             }
         };
 
@@ -118,6 +124,10 @@ public class GameArena
                     left = false;
                 if (keyEvent.getCode() == KeyCode.RIGHT) 
                     right = false;
+				if(keyEvent.getCode() == KeyCode.R)
+					r = false;
+				if(keyEvent.getCode() == KeyCode.ENTER)
+					enter = false;
             }
         };
 
@@ -384,5 +394,15 @@ public class GameArena
 	public boolean rightPressed()
 	{
 		return right;
+	}
+	
+	public boolean rPressed()
+	{
+		return r;
+	}
+	
+	public boolean enterPressed()
+	{
+		return enter;
 	}
 }
