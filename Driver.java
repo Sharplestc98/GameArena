@@ -1,18 +1,13 @@
+import java.util.*;
+
 public class Driver
 {
 	public static void main(String[] args)
 	{
-		GameArena a = new GameArena(640,480);
-		Rectangle r = new Rectangle(200,200,20,70,"RED");
-		Rectangle b	= new Rectangle(r.getXPosition(), r.getYPosition(), r.getWidth(), r.getHeight(), "GREEN");
-		Rectangle rectangles[] = new Rectangle[30];
+		GameArena a = new GameArena(1280,720);
+		Rectangle r = new Rectangle(200,200,20,20,"RED");
 		
 		a.addRectangle(r);
-		double ghostWidth = r.getWidth();
-		double ghostHeight = r.getHeight();
-		double ghostXPosition = r.getXPosition();
-		double ghostYPosition = r.getYPosition();
-		int i = 0;
 		
 		int speed = 2;
 		
@@ -29,14 +24,14 @@ public class Driver
 
             if (a.downPressed())
 			    r.setYPosition(r.getYPosition() + speed);
-			
+				
 			if (a.rPressed())
-				/*r.setWidth(ghostHeight);
-				r.setHeight(ghostWidth);*/
+				a.addRectangle(r);
 			
-			if (a.enterPressed())
-				//Rectangle b	= new Rectangle(r.getXPosition(), r.getYPosition(), r.getWidth(), r.getHeight(), "GREEN");
-				a.addRectangle(b);
+			if(a.enterPressed())
+				a.removeRectangle(r);
+				
+			r.collides(r);
 
 			a.pause();
 		}

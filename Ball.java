@@ -21,6 +21,13 @@ public class Ball
                                         // Pure red is FF0000
                                         // Pure red is 00FF00
                                         // Pure red is 0000FF
+	/////////////////////////////////////////////////
+	
+	private double xSpeed;
+	private double ySpeed;
+
+    private double GRAVITY = 0.2;
+    private double FRICTION = 0.9;
 
 	/**
 	 * Obtains the current position of this Ball.
@@ -85,4 +92,65 @@ public class Ball
 		size = diameter;
 		colour = col;
 	}	
+	
+	/******************************************************/	
+	
+	public double getXSpeed()
+    {
+        return xSpeed;
+    }
+	
+	public double getYSpeed()
+    {
+        return ySpeed;
+    }
+	
+    public void setXSpeed(double speed)
+    {
+        xSpeed = speed;
+    }
+
+    public void setYSpeed(double speed)
+    {
+        ySpeed = speed;
+    }
+
+    public void move()
+    {
+		xPosition += xSpeed;
+		yPosition += ySpeed;
+    }
+
+	public void bounce(double maxX, double maxY)
+	{
+        move();
+		if (xPosition > maxX || xPosition < 0)
+        {
+			xSpeed = -xSpeed;
+		    xPosition += xSpeed;
+            xSpeed = xSpeed * FRICTION;
+        }
+
+		if (yPosition > maxY || yPosition < 0)
+        {
+			ySpeed = -ySpeed;
+		    yPosition += ySpeed;
+            ySpeed = ySpeed * FRICTION;
+        }
+	}
+	
+		public boolean collides(Rectangle r)
+	{
+		return(xPosition<r.getXPosition()+r.getWidth()&&
+		xPosition + width > r.getXPosition()&&
+		yPosition < r.getYPosition() + r.getHeight() &&
+		yPosition + height > r.getYPosition());
+	}
+
+	public void gravity(double maxX, double maxY)
+	{
+        ySpeed = ySpeed + GRAVITY;
+        bounce(maxX, maxY);
+
+    }
 }
